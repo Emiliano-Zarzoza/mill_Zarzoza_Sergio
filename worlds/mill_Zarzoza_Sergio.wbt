@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.19987319440347992 0.9561203551935418 0.21420684523031588 1.6846798144447896
-  position 3.98648624929802 1.9075354999497924 -0.4261875635125356
+  orientation 0.027852663781007408 0.9917630332577361 0.12502125812723588 3.576502065499475
+  position -1.133481474600368 1.052477448988949 -2.9111820114045193
 }
 TexturedBackground {
 }
@@ -11,7 +11,7 @@ TexturedBackgroundLight {
 }
 Floor {
 }
-Solid {
+DEF S_BOTTOM Solid {
   translation 0 0.025 0
   children [
     Shape {
@@ -24,7 +24,7 @@ Solid {
     }
   ]
 }
-Solid {
+DEF S_TOP Solid {
   translation 0 1 0
   children [
     Shape {
@@ -34,7 +34,7 @@ Solid {
   ]
   name "solid(1)"
 }
-Solid {
+DEF S_FIRSTFACE Solid {
   translation 0 0.05 0
   children [
     DEF G_FACE Group {
@@ -123,4 +123,89 @@ Solid {
     }
   ]
   name "solid(2)"
+}
+DEF S_SECONDFACE Solid {
+  translation 0 0.05 0
+  children [
+    DEF G_FACE2 Group {
+      children [
+        Transform {
+          translation -0.495 0.05 0
+          rotation 0 0 1 1.5707996938995747
+          children [
+            Shape {
+              appearance USE C_FACEBOX1
+              geometry USE G_FACEBOX1
+            }
+          ]
+        }
+        Transform {
+          translation -0.495 0.875 0
+          rotation 0 0 1 1.5707996938995747
+          children [
+            Shape {
+              appearance USE C_FACEBOX1
+              geometry USE G_FACEBOX1
+            }
+          ]
+        }
+        Transform {
+          translation -0.495 0.463 0.45
+          rotation 0 0 1 1.5707996938995747
+          children [
+            Shape {
+              appearance USE C_FACEBOX1
+              geometry USE G_FACEBOX2
+            }
+          ]
+        }
+        Transform {
+          translation -0.495 0.463 -0.45
+          rotation 0 0 1 1.5707996938995747
+          children [
+            Shape {
+              appearance USE C_FACEBOX1
+              geometry USE G_FACEBOX2
+            }
+          ]
+        }
+        Transform {
+          translation -0.495 0.5 0
+          rotation 0 0 1 1.5707996938995747
+          children [
+            Transform {
+              translation -0.039 0 0
+              rotation 0 1 0 0.7854003061004253
+              children [
+                Shape {
+                  appearance USE C_FACEBOX1
+                  geometry USE G_CROSSBOX
+                }
+              ]
+            }
+          ]
+        }
+        Transform {
+          translation -0.495 0.5 0
+          rotation 0 0 1 1.5708003061004252
+          children [
+            Transform {
+              translation 0.002 0 0.03
+              rotation 0 1 0 -0.7853996938995746
+              children [
+                Shape {
+                  appearance USE C_FACEBOX1
+                  geometry USE G_CROSSBOX
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  name "solid(3)"
+}
+DEF S_THIRDFACE Solid {
+  name "solid(4)"
 }
