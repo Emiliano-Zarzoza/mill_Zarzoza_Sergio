@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.3496531429261624 0.9339655758688818 0.07383077091406096 0.33578542052470345
-  position 1.5932976124260452 1.2270204567592824 3.902715336732208
+  orientation -0.19987319440347992 0.9561203551935418 0.21420684523031588 1.6846798144447896
+  position 3.98648624929802 1.9075354999497924 -0.4261875635125356
 }
 TexturedBackground {
 }
@@ -16,7 +16,7 @@ Solid {
   children [
     Shape {
       appearance DEF C_BOX1 PBRAppearance {
-        baseColor 0.51113145647364 1 0.5619592584115358
+        baseColor 0.15072861829556725 0.1257343404287785 0.9788815136949721
       }
       geometry DEF G_BOX1 Box {
         size 1 0.05 1
@@ -33,4 +33,94 @@ Solid {
     }
   ]
   name "solid(1)"
+}
+Solid {
+  translation 0 0.05 0
+  children [
+    DEF G_FACE Group {
+      children [
+        Transform {
+          translation 0.495 0.05 0
+          rotation 0 0 1 1.5707996938995747
+          children [
+            Shape {
+              appearance DEF C_FACEBOX1 PBRAppearance {
+                baseColor 0.9900816357671474 0.4802319371328298 0.19731441214618142
+              }
+              geometry DEF G_FACEBOX1 Box {
+                size 0.1 0.01 1
+              }
+            }
+          ]
+        }
+        Transform {
+          translation 0.495 0.875 0
+          rotation 0 0 1 1.5708003061004252
+          children [
+            Shape {
+              appearance USE C_FACEBOX1
+              geometry USE G_FACEBOX1
+            }
+          ]
+        }
+        Transform {
+          translation 0.495 0.4625 0.45
+          rotation 0 0 1 1.5707996938995747
+          children [
+            Shape {
+              appearance USE C_FACEBOX1
+              geometry DEF G_FACEBOX2 Box {
+                size 0.725 0.01 0.1
+              }
+            }
+          ]
+        }
+        Transform {
+          translation 0.495 0.463 -0.45
+          rotation 0 0 1 1.5707996938995747
+          children [
+            Shape {
+              appearance USE C_FACEBOX1
+              geometry USE G_FACEBOX2
+            }
+          ]
+        }
+        Transform {
+          translation 0.495 0.5 0
+          rotation 0 0 1 1.5708003061004252
+          children [
+            Transform {
+              translation -0.039 0 0
+              rotation 0 1 0 0.7853996938995746
+              children [
+                Shape {
+                  appearance USE C_FACEBOX1
+                  geometry DEF G_CROSSBOX Box {
+                    size 1.2000000000000002 0.01 0.07
+                  }
+                }
+              ]
+            }
+          ]
+        }
+        Transform {
+          translation 0.495 0.5 0
+          rotation 1 0 0 0.7854003061004253
+          children [
+            Transform {
+              translation 0.002 0 0.03
+              rotation 0 0 1 1.5707896938995747
+              children [
+                Shape {
+                  appearance USE C_FACEBOX1
+                  geometry USE G_CROSSBOX
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  name "solid(2)"
 }
