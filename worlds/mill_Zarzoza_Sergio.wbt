@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.9458960022303927 -0.3229681619027408 -0.03118203588166955 6.079748325851763
-  position -0.1910161021337244 0.8758978272646413 2.958370732750776
+  orientation 0.328448625098787 -0.9214980782568098 -0.20727467872300037 5.082237820270326
+  position 1.5036236983404145 2.0540038774664153 0.5646114639193641
 }
 TexturedBackground {
 }
@@ -17,7 +17,6 @@ DEF S_BOTTOM Solid {
     Shape {
       appearance DEF C_BOX1 PBRAppearance {
         baseColor 0.15072861829556725 0.1257343404287785 0.9788815136949721
-        transparency 0.1
       }
       geometry DEF G_BOX1 Box {
         size 1 0.05 1
@@ -31,6 +30,96 @@ DEF S_TOP Solid {
     Shape {
       appearance USE C_BOX1
       geometry USE G_BOX1
+    }
+    DEF G_HINGES Group {
+      children [
+        Transform {
+          translation 0 0.25 0
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0 0 0
+              }
+              geometry Cylinder {
+                height 0.5
+                radius 0.05
+              }
+            }
+          ]
+        }
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 1 0
+            anchor 0 0.25 0
+            minStop -0.8726
+            maxStop 0.8726
+            staticFriction 0.02
+          }
+          endPoint Solid {
+            translation 0.08 0.55 0
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1313496604867628 0.9996795605401694 0.02362096589608606
+                }
+                geometry DEF G_BOXHELIX Box {
+                  size 0.4 0.1 0.1
+                }
+              }
+              HingeJoint {
+                jointParameters HingeJointParameters {
+                  anchor 0.2 0 0
+                  staticFriction 0.01
+                }
+                endPoint Solid {
+                  rotation 1 0 0 0
+                  children [
+                    Group {
+                      children [
+                        Transform {
+                          translation 0.205 0 0
+                          rotation 0 0 1 1.5707996938995747
+                          children [
+                            Shape {
+                              appearance DEF C_HELIX PBRAppearance {
+                                baseColor 0.9862516212710766 0.007125963225757229 0.027435721370260166
+                              }
+                              geometry DEF G_HELIX Box {
+                                size 0.05 0.01 0.5
+                              }
+                            }
+                          ]
+                        }
+                        Transform {
+                          translation 0.205 0 0
+                          rotation 0 1 0 1.5707996938995747
+                          children [
+                            Transform {
+                              rotation 1 0 0 1.5707996938995747
+                              children [
+                                Shape {
+                                  appearance USE C_HELIX
+                                  geometry USE G_HELIX
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                  boundingObject USE G_HELIX
+                  physics Physics {
+                  }
+                }
+              }
+            ]
+            boundingObject USE G_BOXHELIX
+            physics Physics {
+            }
+          }
+        }
+      ]
     }
   ]
   name "solid(1)"
